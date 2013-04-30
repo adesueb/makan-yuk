@@ -1,0 +1,33 @@
+<LinearLayout 
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ActivityMenuUtama" >
+
+    <Button
+        android:id="@+id/buttonKriteria"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/kriteria" />
+
+    <Button
+        android:id="@+id/buttonLokasi"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/lokasi" />
+
+    <Button
+        android:id="@+id/buttonPeta"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/peta" />
+
+    <Button
+        android:id="@+id/buttonSaran"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/saran" />
+    
+</LinearLayout>

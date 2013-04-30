@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">MakanYuk</string>
+    <string name="action_settings">Settings</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="title_activity_kategori">Kategori</string>
+    <string name="title_activity_beranda">Beranda</string>
+    <string name="title_activity_login">login</string>
+    <string name="title_activity_activity_register">Register</string>
+    <string name="userName">user name</string>
+    <string name="namaLengkap">nama lengkap</string>
+    <string name="alamatEmail">alamat email</string>
+    <string name="password">password</string>
+    <string name="passwordLagi">password lagi</string>
+    <string name="ok">OK</string>
+    <string name="login">login</string>
+    <string name="register">register</string>
+    <string name="titleLogin">Login</string>
+    <string name="kriteria">kriteria</string>
+    <string name="lokasi">lokasi</string>
+    <string name="peta">peta</string>
+    <string name="saran">saran resto</string>
+    <string name="title_activity_activity_resto">Resto</string>
+    <string name="title_activity_activity_map">Peta</string>
+
+</resources>
