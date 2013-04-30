@@ -27,7 +27,7 @@
         
         <activity
             android:name="com.makanyuk.menuutama.ActivityMenuUtama"
-            android:label="@string/app_name" >
+            android:label="@string/title_activity_menu_utama" >
         </activity>
         <activity
             android:name="com.makanyuk.kategori.ActivityKategori"
@@ -35,7 +35,7 @@
         </activity>
         <activity
             android:name="com.makanyuk.beranda.ActivityBeranda"
-            android:label="@string/title_activity_beranda" >
+            android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
