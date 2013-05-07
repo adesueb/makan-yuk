@@ -33,7 +33,7 @@ public class ActivityKategori extends ListActivity{
 	}
 	
 	private AdapterKategori 	adapter;
-	private GudangKategori		gudangKategori;
+	private KategoriService		gudangKategori;
 	private List<Kategori>		kategoris;
 
 	private final static class HandlerKategori extends HandlerEntities<Kategori>{

@@ -9,5 +9,5 @@ public abstract class HandlerEntities<T>{
 		handlerEntities(entities);
 	}
 	
-	public abstract void handlerEntities(List<T> entities);	
+	protected abstract void handlerEntities(List<T> entities);	
 }
