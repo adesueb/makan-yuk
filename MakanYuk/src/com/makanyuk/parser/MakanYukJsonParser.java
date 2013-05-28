@@ -34,7 +34,7 @@ public class MakanYukJsonParser {
 		
 		try {
 			JSONObject jsonObject = new JSONObject(json);
-			JSONArray	jsonArray = jsonObject.getJSONArray("kategori");
+			JSONArray	jsonArray = jsonObject.getJSONArray("kategoris");
 			for(int i=0;i<jsonArray.length();i++){
 				kategories.
 					add(getkategori

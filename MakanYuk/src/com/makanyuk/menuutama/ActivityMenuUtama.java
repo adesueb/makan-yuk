@@ -24,8 +24,8 @@ public class ActivityMenuUtama extends Activity{
 		Button buttonLokasi = (Button) findViewById(R.id.buttonLokasi);
 		buttonLokasi.setOnClickListener(new OnClickLokasi(this));
 		
-		Button buttonKriteria = (Button) findViewById(R.id.buttonKriteria);
-		buttonKriteria.setOnClickListener(new OnClickKategori(this));
+		Button buttonKategori = (Button) findViewById(R.id.buttonKategori);
+		buttonKategori.setOnClickListener(new OnClickKategori(this));
 		
 		Button buttonPeta = (Button) findViewById(R.id.buttonPeta);
 		buttonPeta.setOnClickListener(new OnClickPeta(this));

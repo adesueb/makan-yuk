@@ -7,10 +7,10 @@
     tools:context=".ActivityMenuUtama" >
 
     <Button
-        android:id="@+id/buttonKriteria"
+        android:id="@+id/buttonKategori"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/kriteria" />
+        android:text="@string/kategori" />
 
     <Button
         android:id="@+id/buttonLokasi"
