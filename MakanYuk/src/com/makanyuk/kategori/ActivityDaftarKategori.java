@@ -7,41 +7,43 @@ import com.makanyuk.handler.HandlerEntities;
 
 import android.os.Bundle;
 import android.os.Handler;
-import android.util.Log;
 import android.app.ListActivity;
 
-public class ActivityKategori extends ListActivity{
+public class ActivityDaftarKategori extends ListActivity{
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		
 		setContentView(R.layout.layout_list);
-		kategoriService = new KategoriService();
-		kategoriService.getAllKategori(new HandlerKategori(this));
+		
 		handler = new Handler();
-	}
-	
-	public void setAdapter(){
-		adapter = new AdapterKategori(getApplicationContext(), R.layout.layout_list_item_kategori, kategoris);
+		
+		adapter = new AdapterDaftarKategori(getApplicationContext(), R.layout.layout_list_item, kategoris);
 		getListView().setAdapter(adapter);
+		
+		kategoriService = new KategoriService();
+		kategoriService.getAllKategori(new HandlerDaftarKategori(this));
+	}
+
+	public void refresh(){
 		adapter.notifyDataSetChanged();
 	}
 	
 	
 	public void setEntities(List<Kategori> entities) {
-		Log.d("banyak kategori", entities.size()+"");
 		this.kategoris = entities;
+		this.adapter.setKategoris(entities);
 	}
 	
-	private AdapterKategori 	adapter;
+	private AdapterDaftarKategori 	adapter;
 	private KategoriService		kategoriService;
 	private List<Kategori>		kategoris;
 	private Handler handler;
 
-	private final static class HandlerKategori extends HandlerEntities<Kategori>{
+	private final static class HandlerDaftarKategori extends HandlerEntities<Kategori>{
 
-		public HandlerKategori(ActivityKategori activityKategori){
+		public HandlerDaftarKategori(ActivityDaftarKategori activityKategori){
 			this.activityKategori = activityKategori;
 		}
 		
@@ -52,13 +54,12 @@ public class ActivityKategori extends ListActivity{
 				@Override
 				public void run(){
 					activityKategori.setEntities(entities);
-					activityKategori.setAdapter();	
+					activityKategori.refresh();	
 				}
 			});
-			
 		}
 
-		private final ActivityKategori activityKategori;
+		private final ActivityDaftarKategori activityKategori;
 		
 	}
 }

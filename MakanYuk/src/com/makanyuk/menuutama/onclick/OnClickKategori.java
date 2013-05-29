@@ -1,6 +1,6 @@
 package com.makanyuk.menuutama.onclick;
 
-import com.makanyuk.kategori.ActivityKategori;
+import com.makanyuk.kategori.ActivityDaftarKategori;
 
 import android.content.Context;
 import android.content.Intent;
@@ -14,7 +14,7 @@ public class OnClickKategori implements View.OnClickListener{
 	
 	@Override
 	public void onClick(View arg0) {
-		Intent intent = new Intent(context, ActivityKategori.class);
+		Intent intent = new Intent(context, ActivityDaftarKategori.class);
 		context.startActivity(intent);
 	}
 	

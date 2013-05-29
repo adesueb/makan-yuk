@@ -30,7 +30,7 @@
             android:label="@string/title_activity_menu_utama" >
         </activity>
         <activity
-            android:name="com.makanyuk.kategori.ActivityKategori"
+            android:name="com.makanyuk.kategori.ActivityDaftarKategori"
             android:label="@string/title_activity_kategori" >
         </activity>
         <activity
@@ -52,6 +52,10 @@
         </activity>
         <activity
             android:name="com.makanyuk.resto.ActivityResto"
+            android:label="@string/title_activity_activity_resto" >
+        </activity>
+        <activity
+            android:name="com.makanyuk.resto.ActivityDaftarResto"
             android:label="@string/title_activity_activity_resto" >
         </activity>
         <activity
