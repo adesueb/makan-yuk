@@ -30,5 +30,6 @@
     <string name="nama">Nama</string>
     <string name="alamat">Alamat</string>
     <string name="set_lokasi">Set Lokasi</string>
+    <string name="kirim">kirim</string>
 
 </resources>
