@@ -20,9 +20,15 @@
     <string name="titleLogin">Login</string>
     <string name="kategori">kategori</string>
     <string name="lokasi">lokasi</string>
+    <string name="kecamatan">kecamatan</string>
     <string name="peta">peta</string>
     <string name="saran">saran resto</string>
     <string name="title_activity_activity_resto">Resto</string>
     <string name="title_activity_activity_map">Peta</string>
+    <string name="tambah">tambah</string>
+    <string name="tambah_menu">tambah menu</string>
+    <string name="nama">Nama</string>
+    <string name="alamat">Alamat</string>
+    <string name="set_lokasi">Set Lokasi</string>
 
 </resources>

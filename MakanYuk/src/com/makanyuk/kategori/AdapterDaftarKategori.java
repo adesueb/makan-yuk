@@ -48,11 +48,11 @@ public class AdapterDaftarKategori extends ArrayAdapter<Kategori>{
 		View rowView = inflater.inflate(resource, parent, false);
 		Kategori kategori = getItem(position);
 		if(kategori!=null){
-			TextView tvId = (TextView) rowView.findViewById(R.id.tvId);
-			tvId.setText(kategori.getId());
+			TextView tvPertama = (TextView) rowView.findViewById(R.id.tvPertama);
+			tvPertama.setText(kategori.getId());
 
-			TextView tvNama = (TextView) rowView.findViewById(R.id.tvNama);
-			tvNama.setText(kategori.getNama());	
+			TextView tvKedua = (TextView) rowView.findViewById(R.id.tvKedua);
+			tvKedua.setText(kategori.getNama());	
 			rowView.setOnClickListener(new OnClickKategoriItem(context, kategori));
 		}
 		return rowView;

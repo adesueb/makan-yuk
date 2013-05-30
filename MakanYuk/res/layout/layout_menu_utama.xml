@@ -13,7 +13,7 @@
         android:text="@string/kategori" />
 
     <Button
-        android:id="@+id/buttonLokasi"
+        android:id="@+id/buttonAlamat"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/lokasi" />

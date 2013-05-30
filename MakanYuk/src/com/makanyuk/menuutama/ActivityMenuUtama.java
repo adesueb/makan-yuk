@@ -2,9 +2,9 @@ package com.makanyuk.menuutama;
 
 import com.makanyuk.R;
 import com.makanyuk.menuutama.onclick.OnClickKategori;
-import com.makanyuk.menuutama.onclick.OnClickLokasi;
+import com.makanyuk.menuutama.onclick.OnClickAlamat;
 import com.makanyuk.menuutama.onclick.OnClickPeta;
-import com.makanyuk.menuutama.onclick.OnClickSaranResto;
+import com.makanyuk.menuutama.onclick.OnClickRestoSaran;
 
 import android.os.Bundle;
 import android.widget.Button;
@@ -21,8 +21,8 @@ public class ActivityMenuUtama extends Activity{
 	
 	private void setMenu(){
 		
-		Button buttonLokasi = (Button) findViewById(R.id.buttonLokasi);
-		buttonLokasi.setOnClickListener(new OnClickLokasi(this));
+		Button buttonAlamat = (Button) findViewById(R.id.buttonAlamat);
+		buttonAlamat.setOnClickListener(new OnClickAlamat(this));
 		
 		Button buttonKategori = (Button) findViewById(R.id.buttonKategori);
 		buttonKategori.setOnClickListener(new OnClickKategori(this));
@@ -31,6 +31,6 @@ public class ActivityMenuUtama extends Activity{
 		buttonPeta.setOnClickListener(new OnClickPeta(this));
 		
 		Button buttonSaran = (Button) findViewById(R.id.buttonSaran);
-		buttonSaran.setOnClickListener(new OnClickSaranResto(this));
+		buttonSaran.setOnClickListener(new OnClickRestoSaran(this));
 	}
 }

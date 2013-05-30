@@ -1,5 +1,7 @@
 package com.makanyuk.resto;
 
+import java.util.List;
+
 import com.makanyuk.map.entity.Lokasi;
 
 public class Resto {
@@ -28,11 +30,21 @@ public class Resto {
 	public void setLokasi(Lokasi lokasi) {
 		this.lokasi = lokasi;
 	}
+	public List<RestoMenu> getRestoMenus() {
+		return restoMenus;
+	}
+	public void setRestoMenus(List<RestoMenu> restoMenus) {
+		this.restoMenus = restoMenus;
+	}
+
+
 
 
 	private String id;
 	private String nama;
 	private Lokasi lokasi;
 	private String alamat;
+	
+	private List<RestoMenu> restoMenus;
 	
 }

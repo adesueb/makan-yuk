@@ -20,6 +20,69 @@ public class RestoService {
 		getRestos(handler, VariableGeneral.URL_GET_RESTOS);
 	}
 	
+	public void getRestosFromAlamat(HandlerEntities<Resto> handler, String alamat){
+		String url = VariableGeneral.URL_GET_RESTOS+"?alamat="+alamat;
+		getRestos(handler,url);
+	}
+	
+	public void getRestosByAlamat(HandlerEntities<Resto> handler){
+		String url = VariableGeneral.URL_GET_RESTOS+"?alamat=true";
+		getRestos(handler,url);
+	}
+	
+	public void getRestoMenusFromResto(final HandlerEntities<RestoMenu> handler, Resto resto){
+		final String url = VariableGeneral.URL_GET_RESTOS+"?restoId="+resto.getId();
+		
+		new Thread(new Runnable(){
+
+			@Override
+			public void run() {
+				HttpKoneksi http = new HttpKoneksi(url);
+				http.requestGet(new ReceiveCallBack() {
+					
+					@Override
+					public void onSuccess(ReceiveContent receiveContent) {
+						String dataReceive = receiveContent.getContentData();
+						List<RestoMenu> restos = MakanYukJsonParser.getRestoMenusFromJson(dataReceive); 
+						handler.sendEntities(restos);
+					}
+					
+					@Override
+					public void onFailed(String failed) {
+						
+					}
+				});
+			}
+			
+		}).start();
+	}
+	
+	public void addResto(final Resto resto){
+		new Thread(new Runnable() {
+			
+			@Override
+			public void run() {
+				String json = MakanYukJsonParser.getJsonFromResto(resto);
+				
+				HttpKoneksi http = new HttpKoneksi(VariableGeneral.URL_ADD_RESTO);
+				http.requestPost(new ReceiveCallBack() {
+					
+					@Override
+					public void onSuccess(ReceiveContent receiveContent) {
+						
+					}
+					
+					@Override
+					public void onFailed(String failed) {
+						
+					}
+				}, json);
+			}
+		}).start();
+		
+		
+	}
+	
 	private void getRestos(final HandlerEntities<Resto> handler, final String url){
 		new Thread(new Runnable(){
 

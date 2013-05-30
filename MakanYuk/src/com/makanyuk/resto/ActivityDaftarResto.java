@@ -39,7 +39,7 @@ public class ActivityDaftarResto extends ListActivity{
 				kategori.setId(intent.getStringExtra("idKategori"));
 				restoService.getRestosFromKategori(new HandlerDaftarResto(this), kategori);
 				break;
-			}case LOKASI:{
+			}case ALAMAT:{
 				
 				break;
 			}
@@ -62,7 +62,7 @@ public class ActivityDaftarResto extends ListActivity{
 	
 	public static final int DEFAULT	= 0;
 	public static final int KATEGORI	= 1;
-	public static final int LOKASI 	= 2;
+	public static final int ALAMAT 	= 2;
 
 	private final static class HandlerDaftarResto extends HandlerEntities<Resto>{
 

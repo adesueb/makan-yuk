@@ -10,6 +10,7 @@ import org.json.JSONObject;
 import com.makanyuk.kategori.Kategori;
 import com.makanyuk.map.entity.Lokasi;
 import com.makanyuk.resto.Resto;
+import com.makanyuk.resto.RestoMenu;
 import com.makanyuk.user.User;
 
 public class MakanYukJsonParser {
@@ -55,10 +56,49 @@ public class MakanYukJsonParser {
 			jsonObject.put("id", resto.getId());
 			jsonObject.put("nama", resto.getNama());
 			jsonObject.put("alamat", resto.getAlamat());
+			Lokasi lokasi = resto.getLokasi();
+			if(lokasi!=null){
+				jsonObject.put("latitude", lokasi.getLatitude());
+				jsonObject.put("longitude", lokasi.getLongitude());	
+			}
+			
+			List<RestoMenu> restoMenus = resto.getRestoMenus();
+			String jsonRestoMenus = getJsonFromRestoMenus(restoMenus);
+			if(jsonRestoMenus!=null && !jsonRestoMenus.equals("")){
+				jsonObject.put("restoMenus", jsonRestoMenus);	
+			}
+			
+
 		} catch (JSONException e) {
 			e.printStackTrace();
 		}
 		
+		return jsonObject.toString();
+	}
+	
+	public static String getJsonFromRestoMenus(List<RestoMenu> restoMenus){
+		if(restoMenus!=null){
+			JSONArray jsonArray = new JSONArray();
+			for(RestoMenu restoMenu: restoMenus){
+				jsonArray.put(getJsonFromRestoMenu(restoMenu));
+			}
+			return jsonArray.toString();
+		}else{
+			return "";
+		}
+		
+	}
+	
+	public static String getJsonFromRestoMenu(RestoMenu restoMenu){
+		JSONObject jsonObject = new JSONObject();
+		try {
+			jsonObject.put("id", restoMenu.getId());
+			jsonObject.put("nama", restoMenu.getNama());
+			jsonObject.put("harga", restoMenu.getHarga());
+			
+		} catch (JSONException e) {
+			e.printStackTrace();
+		}
 		return jsonObject.toString();
 	}
 	
@@ -93,10 +133,46 @@ public class MakanYukJsonParser {
 			lokasi.setLatitude(jsonObject.getLong("latitude"));
 			lokasi.setLongitude(jsonObject.getLong("longitude"));
 			resto.setLokasi(lokasi);
+			
+			resto.setRestoMenus(getRestoMenusFromJson(json));
+			
 		} catch (JSONException e) {
 			e.printStackTrace();
 		}
 		return resto;
+	}
+	
+	public static List<RestoMenu> getRestoMenusFromJson(String json){
+		try {
+			List<RestoMenu> restoMenus = new ArrayList<RestoMenu>();
+			JSONObject jsonObjectResto = new JSONObject(json);
+			JSONArray jsonArray = jsonObjectResto.getJSONArray("restoMenus");
+			for(int i=0;i<jsonArray.length();i++){
+				JSONObject jsonObject = (JSONObject) jsonArray.get(i);
+				restoMenus.add(getRestoMenu(jsonObject.toString()));
+			
+			}
+			return restoMenus;
+		} catch (JSONException e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+	
+	public static RestoMenu getRestoMenu(String json){
+		JSONObject jsonObject;
+		try {
+			jsonObject = new JSONObject(json);
+			RestoMenu restoMenu = new RestoMenu();
+			restoMenu.setId(jsonObject.getString("id"));
+			restoMenu.setNama(jsonObject.getString("nama"));
+			restoMenu.setHarga(jsonObject.getString("harga"));
+			return restoMenu;
+		} catch (JSONException e) {
+			e.printStackTrace();
+			return null;
+		}
+		
 	}
 	
 	public static String getJsonFromUser(User user){
@@ -111,6 +187,5 @@ public class MakanYukJsonParser {
 		}
 		return jsonObject.toString();
 	}
-	
 	
 }
