@@ -4,7 +4,6 @@ import com.makanyuk.R;
 import com.makanyuk.menuutama.onclick.OnClickKategori;
 import com.makanyuk.menuutama.onclick.OnClickAlamat;
 import com.makanyuk.menuutama.onclick.OnClickPeta;
-import com.makanyuk.menuutama.onclick.OnClickRestoSaran;
 
 import android.os.Bundle;
 import android.widget.Button;
@@ -30,7 +29,5 @@ public class ActivityMenuUtama extends Activity{
 		Button buttonPeta = (Button) findViewById(R.id.buttonPeta);
 		buttonPeta.setOnClickListener(new OnClickPeta(this));
 		
-		Button buttonSaran = (Button) findViewById(R.id.buttonSaran);
-		buttonSaran.setOnClickListener(new OnClickRestoSaran(this));
 	}
 }

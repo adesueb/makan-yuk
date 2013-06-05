@@ -12,26 +12,26 @@ import com.makanyuk.parser.MakanYukJsonParser;
 
 public class RestoService {
 	public void getRestosFromKategori(HandlerEntities<Resto> handler, Kategori kategori){
-		String url = VariableGeneral.URL_GET_RESTOS+"?id_kategori="+kategori.getId();
+		String url = VariableGeneral.URL_GET_RESTOS+"?group=kategori&id="+kategori.getId();
 		getRestos(handler, url);
 	}
 	
 	public void getAllRestos(HandlerEntities<Resto> handler){
-		getRestos(handler, VariableGeneral.URL_GET_RESTOS);
+		getRestos(handler, VariableGeneral.URL_GET_RESTOS+"?group=all");
 	}
 	
 	public void getRestosFromAlamat(HandlerEntities<Resto> handler, String alamat){
-		String url = VariableGeneral.URL_GET_RESTOS+"?alamat="+alamat;
+		String url = VariableGeneral.URL_GET_RESTOS+"?group=alamat&id="+alamat;
 		getRestos(handler,url);
 	}
 	
 	public void getRestosByAlamat(HandlerEntities<Resto> handler){
-		String url = VariableGeneral.URL_GET_RESTOS+"?alamat=true";
+		String url = VariableGeneral.URL_GET_RESTOS+"?group=alamat";
 		getRestos(handler,url);
 	}
 	
 	public void getRestoMenusFromResto(final HandlerEntities<RestoMenu> handler, Resto resto){
-		final String url = VariableGeneral.URL_GET_RESTOS+"?restoId="+resto.getId();
+		final String url = VariableGeneral.URL_GET_RESTOS+"?group=1&id="+resto.getId();
 		
 		new Thread(new Runnable(){
 

@@ -7,6 +7,8 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import android.util.Log;
+
 import com.makanyuk.kategori.Kategori;
 import com.makanyuk.map.entity.Lokasi;
 import com.makanyuk.resto.Resto;
@@ -27,6 +29,19 @@ public class MakanYukJsonParser {
 			e.printStackTrace();
 		}
 		return kategori;
+	}
+	
+	public static User getUser(String json){
+		User user = new User();
+		try {
+			JSONObject jsonObject = new JSONObject(json);
+			user.setUserName(jsonObject.getString("userName"));
+			user.setPassword(jsonObject.getString("password"));
+			
+		} catch (JSONException e) {
+			e.printStackTrace();
+		}
+		return user;
 	}
 	
 	public static List<Kategori> getKategories(String json){
@@ -106,8 +121,9 @@ public class MakanYukJsonParser {
 	public static List<Resto> getRestosFromJson(String json){
 		List<Resto> restos = new ArrayList<Resto>();
 		try {
-			JSONObject jsonObject = new JSONObject("json");
-			JSONArray jsonArray = jsonObject.getJSONArray("resto");
+			Log.d("Parser", json);
+			JSONObject jsonObject = new JSONObject(json);
+			JSONArray jsonArray = jsonObject.getJSONArray("restos");
 			for(int i=0;i<jsonArray.length();i++){
 				Resto resto = 
 						getRestoFromJson
@@ -178,6 +194,7 @@ public class MakanYukJsonParser {
 	public static String getJsonFromUser(User user){
 		JSONObject jsonObject = new JSONObject();
 		try {
+			
 			jsonObject.put("namaLengkap", user.getNamaLengkap());
 			jsonObject.put("userName", user.getUserName());
 			jsonObject.put("alamatEmail", user.getAlamatEmail());
@@ -185,7 +202,13 @@ public class MakanYukJsonParser {
 		} catch (JSONException e) {
 			e.printStackTrace();
 		}
-		return jsonObject.toString();
+		JSONObject jsonUser = new JSONObject();
+		try {
+			jsonUser.put("user", jsonObject);
+		} catch (JSONException e) {
+			e.printStackTrace();
+		}
+		return jsonUser.toString();
 	}
 	
 }

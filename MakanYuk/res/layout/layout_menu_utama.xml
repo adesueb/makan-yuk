@@ -16,7 +16,7 @@
         android:id="@+id/buttonAlamat"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/lokasi" />
+        android:text="@string/alamat" />
 
     <Button
         android:id="@+id/buttonPeta"
@@ -24,10 +24,5 @@
         android:layout_height="wrap_content"
         android:text="@string/peta" />
 
-    <Button
-        android:id="@+id/buttonSaran"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/saran" />
     
 </LinearLayout>

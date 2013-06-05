@@ -46,8 +46,19 @@ public class HttpKoneksi {
 	}
 	
 	public void requestPost(ReceiveCallBack receiveCallBack, List<Parameter> parameters){
+		requestPost(receiveCallBack, parameters, false);
+	}
+	
+	public void requestPostJson(ReceiveCallBack receiveCallBack, List<Parameter> parameters){
+		requestPost(receiveCallBack, parameters, true);
+	}
+	
+	public void requestPost(ReceiveCallBack receiveCallBack, List<Parameter> parameters, boolean isJson){
 		HttpClient 	httpclient 	= new DefaultHttpClient();
 		HttpPost 	httpPost 	= new HttpPost(url);
+		if(isJson){
+			httpPost.setHeader("Content-type", "application/x-www-form-urlencoded");
+		}
 		try {
 			List<NameValuePair> nameValuePairs = null;
 			if(parameters!=null && parameters.size()>0){
@@ -90,6 +101,8 @@ public class HttpKoneksi {
 			receiveCallBack.failed("gagal");
 		}
 	}
+	
+	
 	
 	private final String url;
 }
