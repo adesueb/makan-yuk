@@ -2,6 +2,8 @@ package com.makanyuk.resto;
 
 import java.util.List;
 
+import android.util.Log;
+
 import com.makanyuk.config.VariableGeneral;
 import com.makanyuk.handler.HandlerEntities;
 import com.makanyuk.kategori.Kategori;
@@ -12,6 +14,7 @@ import com.makanyuk.parser.MakanYukJsonParser;
 
 public class RestoService {
 	public void getRestosFromKategori(HandlerEntities<Resto> handler, Kategori kategori){
+		Log.d("resto service", kategori.getId());
 		String url = VariableGeneral.URL_GET_RESTOS+"?group=kategori&id="+kategori.getId();
 		getRestos(handler, url);
 	}
@@ -31,7 +34,7 @@ public class RestoService {
 	}
 	
 	public void getRestoMenusFromResto(final HandlerEntities<RestoMenu> handler, Resto resto){
-		final String url = VariableGeneral.URL_GET_RESTOS+"?group=1&id="+resto.getId();
+		final String url = VariableGeneral.URL_GET_RESTO_MENUS+"?id="+resto.getId();
 		
 		new Thread(new Runnable(){
 
@@ -93,8 +96,8 @@ public class RestoService {
 					
 					@Override
 					public void onSuccess(ReceiveContent receiveContent) {
-						String dataReceive = receiveContent.getContentData();
-						List<Resto> restos = MakanYukJsonParser.getRestosFromJson(dataReceive); 
+						StringBuilder dataReceive = receiveContent.getLargeContentData();
+						List<Resto> restos = MakanYukJsonParser.getRestosFromLargeJson(dataReceive); 
 						handler.sendEntities(restos);
 					}
 					

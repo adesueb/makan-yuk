@@ -10,6 +10,7 @@ import com.makanyuk.resto.RestoService;
 import android.app.ListActivity;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 
 public class ActivityDaftarAlamat extends ListActivity{
 
@@ -18,10 +19,10 @@ public class ActivityDaftarAlamat extends ListActivity{
 		super.onCreate(savedInstanceState);
 		
 		setContentView(R.layout.layout_list);
-		
+
 		handler = new Handler();
 		
-		adapter = new AdapterDaftarAlamat(getApplicationContext(), R.layout.layout_list_item, restos);
+		adapter = new AdapterDaftarAlamat(this, R.layout.layout_list_item, restos);
 		getListView().setAdapter(adapter);
 		restoService = new RestoService();
 		restoService.getAllRestos(new HandlerDaftarAlamat(this));

@@ -8,6 +8,7 @@
     <string name="title_activity_beranda">Beranda</string>
     <string name="title_activity_login">login</string>
     <string name="title_activity_menu_utama">menu utama</string>
+    <string name="title_activity_daftar_alamat">Alamat</string>
     <string name="title_activity_activity_register">Register</string>
     <string name="userName">user name</string>
     <string name="namaLengkap">nama lengkap</string>

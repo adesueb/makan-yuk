@@ -52,7 +52,7 @@
         </activity>
         <activity
             android:name="com.makanyuk.alamat.ActivityDaftarAlamat"
-            android:label="@string/title_activity_activity_register" >
+            android:label="@string/title_activity_daftar_alamat" >
         </activity>
         <activity
             android:name="com.makanyuk.resto.ActivityResto"

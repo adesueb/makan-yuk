@@ -117,6 +117,23 @@ public class MakanYukJsonParser {
 		return jsonObject.toString();
 	}
 	
+	public static List<Resto> getRestosFromLargeJson(StringBuilder json){
+		List<Resto> restos = new ArrayList<Resto>();
+		try {
+			JSONObject jsonObject = new JSONObject(json.toString());
+			JSONArray jsonArray = jsonObject.getJSONArray("restos");
+			for(int i=0;i<jsonArray.length();i++){
+				Resto resto = 
+						getRestoFromJson
+								(jsonArray.get(i).toString());
+				restos.add(resto);
+			}
+		} catch (JSONException e) {
+			e.printStackTrace();
+		}
+		return restos;
+		
+	}
 	
 	public static List<Resto> getRestosFromJson(String json){
 		List<Resto> restos = new ArrayList<Resto>();
@@ -164,6 +181,7 @@ public class MakanYukJsonParser {
 			JSONObject jsonObjectResto = new JSONObject(json);
 			JSONArray jsonArray = jsonObjectResto.getJSONArray("restoMenus");
 			for(int i=0;i<jsonArray.length();i++){
+
 				JSONObject jsonObject = (JSONObject) jsonArray.get(i);
 				restoMenus.add(getRestoMenu(jsonObject.toString()));
 			

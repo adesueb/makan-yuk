@@ -40,7 +40,7 @@ public class ActivityDaftarResto extends ListActivity{
 				restoService.getRestosFromKategori(new HandlerDaftarResto(this), kategori);
 				break;
 			}case ALAMAT:{
-				
+				restoService.getRestosFromAlamat(new HandlerDaftarResto(this), intent.getStringExtra("alamat"));
 				break;
 			}
 		}

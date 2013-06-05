@@ -73,6 +73,7 @@ public class ActivityRestoSaran extends ListActivity{
 		public OnLokasiClick(ActivityRestoSaran activityRestoSaran){
 			this.activityRestoSaran = activityRestoSaran;
 		}
+		
 		@Override
 		public void onClick(View arg0) {
 			

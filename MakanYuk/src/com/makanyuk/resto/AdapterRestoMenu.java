@@ -14,9 +14,14 @@ import android.widget.TextView;
 public class AdapterRestoMenu extends ArrayAdapter<RestoMenu>{
 
 	public AdapterRestoMenu(Context context, int resource,
-			List<RestoMenu> objects) {
-		super(context, resource, objects);
+			List<RestoMenu> restoMenus) {
+		super(context, resource, restoMenus);
 		this.resource = resource;
+		this.restoMenus = restoMenus;
+	}
+	
+	public void setRestoMenus(List<RestoMenu> restoMenus){
+		this.restoMenus = restoMenus;
 	}
 	
 	@Override
@@ -42,6 +47,7 @@ public class AdapterRestoMenu extends ArrayAdapter<RestoMenu>{
 			tvPertama.setText(restoMenu.getNama());
 			TextView tvKedua = (TextView) rowView.findViewById(R.id.tvKedua);
 			tvKedua.setText(restoMenu.getHarga());
+			return rowView;
 		}
 		return super.getView(position, convertView, parent);
 	}

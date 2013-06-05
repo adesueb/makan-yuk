@@ -19,21 +19,18 @@ public class ActivityDaftarKategori extends ListActivity{
 		
 		handler = new Handler();
 		
-		adapter = new AdapterDaftarKategori(getApplicationContext(), R.layout.layout_list_item, kategoris);
+		adapter = new AdapterDaftarKategori(this, R.layout.layout_list_item, kategoris);
 		getListView().setAdapter(adapter);
 		
 		kategoriService = new KategoriService();
 		kategoriService.getAllKategori(new HandlerDaftarKategori(this));
-	}
-
-	public void refresh(){
-		adapter.notifyDataSetChanged();
 	}
 	
 	
 	public void setEntities(List<Kategori> entities) {
 		this.kategoris = entities;
 		this.adapter.setKategoris(entities);
+		adapter.notifyDataSetChanged();
 	}
 	
 	private AdapterDaftarKategori 	adapter;
@@ -54,7 +51,6 @@ public class ActivityDaftarKategori extends ListActivity{
 				@Override
 				public void run(){
 					activityKategori.setEntities(entities);
-					activityKategori.refresh();	
 				}
 			});
 		}

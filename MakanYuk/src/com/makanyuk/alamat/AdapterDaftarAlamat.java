@@ -50,11 +50,11 @@ public class AdapterDaftarAlamat extends ArrayAdapter<Resto>{
 		Resto resto = getItem(position);
 		if(resto!=null){
 			TextView tvPertama = (TextView) rowView.findViewById(R.id.tvPertama);
-			tvPertama.setText(resto.getAlamat());
+			tvPertama.setText(position+"");
 
 			TextView tvKedua = (TextView) rowView.findViewById(R.id.tvKedua);
 			tvKedua.setText(resto.getAlamat());	
-			rowView.setOnClickListener(new OnClickKategoriItem(context, resto));
+			rowView.setOnClickListener(new OnClickDaftarAlamatItem(context, resto));
 		}
 		return rowView;
 		
@@ -64,8 +64,8 @@ public class AdapterDaftarAlamat extends ArrayAdapter<Resto>{
 	private int resource;
 	private Context context;
 	
-	private static final class OnClickKategoriItem implements View.OnClickListener{
-		public OnClickKategoriItem(Context context, Resto resto){
+	private static final class OnClickDaftarAlamatItem implements View.OnClickListener{
+		public OnClickDaftarAlamatItem(Context context, Resto resto){
 			this.context = context;
 			this.resto = resto;
 		}

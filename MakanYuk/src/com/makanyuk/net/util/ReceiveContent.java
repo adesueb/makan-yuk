@@ -5,7 +5,18 @@ import java.io.InputStream;
 
 public class ReceiveContent {
 
-	
+	public StringBuilder getLargeContentData(){
+		StringBuilder data = new StringBuilder();
+		int read;
+		try {
+			while((read = inputStream.read())!=-1){
+				data.append((char)read);
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return data;
+	}
 	public String getContentData() {
 		String data="";
 		int read;

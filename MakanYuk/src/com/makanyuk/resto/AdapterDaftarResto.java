@@ -50,10 +50,11 @@ public class AdapterDaftarResto extends ArrayAdapter<Resto>{
 			rowView.setOnClickListener(new OnClickDaftarResto(context, resto));
 			
 			TextView tvPertama = (TextView) rowView.findViewById(R.id.tvPertama);
-			tvPertama.setText(resto.getId());
+			tvPertama.setText(resto.getId()+"");
 
 			TextView tvKedua = (TextView) rowView.findViewById(R.id.tvKedua);
 			tvKedua.setText(resto.getNama());	
+			return rowView;
 		}
 		
 		return super.getView(position, convertView, parent);
