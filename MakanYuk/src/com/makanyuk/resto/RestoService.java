@@ -24,7 +24,7 @@ public class RestoService {
 	}
 	
 	public void getRestosFromAlamat(HandlerEntities<Resto> handler, String alamat){
-		String url = VariableGeneral.URL_GET_RESTOS+"?group=alamat&id="+alamat;
+		String url = VariableGeneral.URL_GET_RESTOS+"?group=alamat&id='"+alamat+"'";
 		getRestos(handler,url);
 	}
 	
@@ -97,6 +97,7 @@ public class RestoService {
 					@Override
 					public void onSuccess(ReceiveContent receiveContent) {
 						StringBuilder dataReceive = receiveContent.getLargeContentData();
+						Log.d("RestoService", dataReceive.toString());
 						List<Resto> restos = MakanYukJsonParser.getRestosFromLargeJson(dataReceive); 
 						handler.sendEntities(restos);
 					}

@@ -21,6 +21,7 @@ import com.makanyuk.resto.RestoService;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.util.Log;
 
 public class ActivityMap extends MapActivity {
 
@@ -30,12 +31,13 @@ public class ActivityMap extends MapActivity {
 		setContentView(R.layout.layout_map);
 		
 		mapView = (MapView) findViewById(R.id.mapview);
+		mapView.setBuiltInZoomControls(true);
 		
 		handler = new Handler();
 		
 		mapController 	= mapView.getController();
 
-		mapController.setZoom(4);
+		mapController.setZoom(14);
 
 		GpsManager gpsManager = new GpsManager(this, new PetaHandlerLocationCenter(this));
 
@@ -89,9 +91,14 @@ public class ActivityMap extends MapActivity {
 	public void refreshOverlay(List<Resto> entities){
 		PetaOverlayToActivity petaOverlay = 
 				new PetaOverlayToActivity(ActivityResto.class, getResources().getDrawable(R.drawable.ic_launcher), this);
+
+		Log.d("ActivityMap", "banyak resto"+entities.size());
 		
-		List<OverlayItem> overlayItems = OverlayItemsResto.getOverlayItems(restos);
-	    
+		List<OverlayItem> overlayItems = OverlayItemsResto.getOverlayItems(entities);
+	  
+
+		Log.d("ActivityMap", "banyak overlay"+overlayItems.size());
+		
 		if(overlayItems!=null){
 			for(OverlayItem overlay:overlayItems){
 				petaOverlay.addOverLay(overlay);

@@ -16,8 +16,8 @@ public class OverlayItemsResto {
 		for(Resto resto:restos){
 			OverlayItemMaker overlayItemMaker = new OverlayItemMaker();
 			overlayItemMaker.setLocation(resto.getLokasi());
-			overlayItemMaker.setTitle(resto.getNama());
-			overlayItemMaker.setDescription(resto.getAlamat());
+			overlayItemMaker.setTitle(resto.getId());
+			overlayItemMaker.setDescription(resto.getNama());
 			OverlayItem overlay = overlayItemMaker.makeOverlayItemFromResto();
 			if(overlay!=null){
 				overlayItems.add(overlay);				

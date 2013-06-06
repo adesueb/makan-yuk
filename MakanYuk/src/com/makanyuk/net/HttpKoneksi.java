@@ -32,7 +32,7 @@ public class HttpKoneksi {
 		HttpClient httpclient = new DefaultHttpClient();
 		HttpGet httpGet = new HttpGet(url);
 		try {
-			HttpResponse response = httpclient.execute(httpGet);
+				HttpResponse response = httpclient.execute(httpGet);
 		    InputStream inputStream = response.getEntity().getContent();
 		    ReceiveContent receiveContent = new ReceiveContent();
 		    receiveContent.setContentInputStream(inputStream);
@@ -53,10 +53,10 @@ public class HttpKoneksi {
 		requestPost(receiveCallBack, parameters, true);
 	}
 	
-	public void requestPost(ReceiveCallBack receiveCallBack, List<Parameter> parameters, boolean isJson){
+	public void requestPost(ReceiveCallBack receiveCallBack, List<Parameter> parameters, boolean isEncode){
 		HttpClient 	httpclient 	= new DefaultHttpClient();
 		HttpPost 	httpPost 	= new HttpPost(url);
-		if(isJson){
+		if(isEncode){
 			httpPost.setHeader("Content-type", "application/x-www-form-urlencoded");
 		}
 		try {

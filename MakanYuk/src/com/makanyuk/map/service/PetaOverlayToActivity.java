@@ -6,6 +6,7 @@ import java.util.List;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
+import android.util.Log;
 
 import com.google.android.maps.OverlayItem;
 
@@ -29,6 +30,7 @@ public class PetaOverlayToActivity extends APetaOverlay{
 	
 	@Override
 	protected boolean onTap(int index) {
+		Log.d("peta overlay tap", "isi dari index : "+index);
 		OverlayItem 		item 	= mOverlays.get(index);
 		Intent intent = new Intent(context,activityClass);
 		intent.putExtra("id", item.getTitle());

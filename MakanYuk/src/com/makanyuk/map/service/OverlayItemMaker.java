@@ -28,10 +28,16 @@ public class OverlayItemMaker {
 	}
 	
 	public void setLocation(Lokasi location){
+		if(location!=null){
+			this.geoPoint = 
+					new GeoPoint((int)
+							(location.getLatitude()*1E6),(int) (location.getLongitude()*1E6));	
+		}else{
+			this.geoPoint = 
+					new GeoPoint((int)
+							(0),(int) (0));
+		}
 		
-		this.geoPoint = 
-				new GeoPoint((int)
-						(location.getLatitude()*1E6),(int) (location.getLongitude()*1E6));
 	}
 	
 	private GeoPoint geoPoint;
