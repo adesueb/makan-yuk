@@ -4,11 +4,11 @@ import java.util.List;
 
 import com.makanyuk.R;
 import com.makanyuk.handler.HandlerEntities;
+import com.makanyuk.map.ActivityRestoMap;
 import com.makanyuk.map.entity.Lokasi;
 
 import android.os.Bundle;
 import android.os.Handler;
-import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -32,7 +32,7 @@ public class ActivityResto extends ListActivity {
 		String alamat 	= intent.getStringExtra("alamat");
 		
 		double latitude 	= intent.getDoubleExtra("latitude", 0);
-		double longitude 	= intent.getDoubleExtra("longitude", 0);
+		double longitude	= intent.getDoubleExtra("longitude", 0);
 
 		Lokasi lokasi = new Lokasi();
 		lokasi.setLatitude(latitude);
@@ -53,7 +53,16 @@ public class ActivityResto extends ListActivity {
 			
 			@Override
 			public void onClick(View arg0) {
-				// TODO 
+				Intent intent = new Intent(ActivityResto.this, ActivityRestoMap.class);
+				intent.putExtra("id", resto.getId());
+				intent.putExtra("nama", resto.getNama());
+				intent.putExtra("alamat", resto.getAlamat());
+				
+				Lokasi lokasi = resto.getLokasi();
+				intent.putExtra("latitude", lokasi.getLatitude());
+				intent.putExtra("longitude", lokasi.getLongitude());
+				
+				startActivity(intent);
 			}
 		});
 				

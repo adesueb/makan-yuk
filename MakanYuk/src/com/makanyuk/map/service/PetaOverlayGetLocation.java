@@ -2,7 +2,6 @@ package com.makanyuk.map.service;
 
 import java.util.ArrayList;
 import java.util.List;
-import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Handler;
@@ -15,7 +14,7 @@ import com.google.android.maps.OverlayItem;
 
 public class PetaOverlayGetLocation extends APetaOverlay{
 
-	public PetaOverlayGetLocation(Drawable defaultMarker, Context context, Handler handler) {
+	public PetaOverlayGetLocation(Drawable defaultMarker, Handler handler) {
 		super(boundCenterBottom(defaultMarker));
 		mHandler	= handler;
 		

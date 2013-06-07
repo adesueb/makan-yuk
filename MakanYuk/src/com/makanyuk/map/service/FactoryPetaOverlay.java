@@ -18,9 +18,9 @@ public class FactoryPetaOverlay {
 	
 	private APetaOverlay createPetaOverlay(int id, int idGambar){
 		if(handler != null){
-			return new PetaOverlayGetLocation(context.getResources().getDrawable(idGambar), context, handler);
+			return new PetaOverlayGetLocation(context.getResources().getDrawable(idGambar), handler);
 		}else if(activityClass!=null){
-			return new PetaOverlayToActivity(activityClass, context.getResources().getDrawable(idGambar), context);
+			return new PetaOverlayHandlerAction(context.getResources().getDrawable(idGambar), handler);
 		}else{
 			return new PetaOverlay(id,context.getResources().getDrawable(idGambar), context);
 		}

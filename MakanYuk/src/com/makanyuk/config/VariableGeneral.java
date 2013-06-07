@@ -2,7 +2,7 @@ package com.makanyuk.config;
 
 public class VariableGeneral {
 
-	private static final String IP = "192.168.2.108";
+	private static final String IP = "192.168.43.235";
 	
 	public static final String URL_ADD_RESTO = "";
 

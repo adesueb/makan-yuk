@@ -63,7 +63,12 @@
             android:label="@string/title_activity_activity_resto" >
         </activity>
         <activity
-            android:name="com.makanyuk.map.ActivityMap"
+            android:name="com.makanyuk.map.ActivityDaftarRestoMap"
+            android:label="@string/title_activity_activity_map" 
+                  android:exported="false">
+        </activity>
+        <activity
+            android:name="com.makanyuk.map.ActivityRestoMap"
             android:label="@string/title_activity_activity_map" 
                   android:exported="false">
         </activity>

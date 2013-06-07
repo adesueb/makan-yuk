@@ -25,4 +25,17 @@ public class OverlayItemsResto {
 		}
 		return overlayItems;
 	}
+	
+	public  static OverlayItem getOverlayItem(Resto resto){
+		if(resto==null){
+			return null;
+		}
+		OverlayItemMaker overlayItemMaker = new OverlayItemMaker();
+		overlayItemMaker.setLocation(resto.getLokasi());
+		overlayItemMaker.setTitle(resto.getId());
+		overlayItemMaker.setDescription(resto.getNama());
+		OverlayItem overlay = overlayItemMaker.makeOverlayItemFromResto();
+			
+		return overlay;
+	}
 }

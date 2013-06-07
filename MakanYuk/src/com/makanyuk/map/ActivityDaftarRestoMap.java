@@ -1,6 +1,8 @@
 package com.makanyuk.map;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import com.google.android.maps.GeoPoint;
 import com.google.android.maps.MapActivity;
@@ -12,18 +14,18 @@ import com.makanyuk.gps.GpsManager;
 import com.makanyuk.gps.Status;
 import com.makanyuk.handler.HandlerEntities;
 import com.makanyuk.map.entity.Lokasi;
-import com.makanyuk.map.service.PetaOverlayToActivity;
+import com.makanyuk.map.service.PetaOverlayHandlerAction;
 import com.makanyuk.resto.ActivityResto;
 import com.makanyuk.resto.OverlayItemsResto;
 import com.makanyuk.resto.Resto;
 import com.makanyuk.resto.RestoService;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.util.Log;
 
-public class ActivityMap extends MapActivity {
+public class ActivityDaftarRestoMap extends MapActivity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -37,7 +39,7 @@ public class ActivityMap extends MapActivity {
 		
 		mapController 	= mapView.getController();
 
-		mapController.setZoom(14);
+		mapController.setZoom(12);
 
 		GpsManager gpsManager = new GpsManager(this, new PetaHandlerLocationCenter(this));
 
@@ -60,11 +62,27 @@ public class ActivityMap extends MapActivity {
   		}
 		
   	}
+ 	
+ 	public void openResto(String id){
+ 		Resto resto = mapResto.get(id);
+ 		if(resto!=null){
+ 			Intent intent = new Intent(this, ActivityResto.class);
+			intent.putExtra("id", resto.getId());
+			intent.putExtra("nama", resto.getNama());
+			intent.putExtra("alamat", resto.getAlamat());
+			
+			Lokasi lokasi = resto.getLokasi();
+			intent.putExtra("latitude", lokasi.getLatitude());
+			intent.putExtra("longitude", lokasi.getLongitude());
+			
+			startActivity(intent);
+ 		}
+ 	}
 	
 	private MapController mapController;
 	
 	private static final class PetaHandlerLocationCenter extends Handler{
-  		public PetaHandlerLocationCenter(ActivityMap peta){
+  		public PetaHandlerLocationCenter(ActivityDaftarRestoMap peta){
   			mPeta = peta;
   		}
   		@Override
@@ -80,7 +98,7 @@ public class ActivityMap extends MapActivity {
   			
 			
 		}
-  		private ActivityMap mPeta;
+  		private ActivityDaftarRestoMap mPeta;
   	}
 
 	@Override
@@ -89,16 +107,18 @@ public class ActivityMap extends MapActivity {
 	}
 		
 	public void refreshOverlay(List<Resto> entities){
-		PetaOverlayToActivity petaOverlay = 
-				new PetaOverlayToActivity(ActivityResto.class, getResources().getDrawable(R.drawable.ic_launcher), this);
-
-		Log.d("ActivityMap", "banyak resto"+entities.size());
 		
+		mapResto = new HashMap<String, Resto>();
+		
+		for(Resto resto:entities){
+			mapResto.put(resto.getId(), resto);
+		}
+		
+		PetaOverlayHandlerAction petaOverlay = 
+				new PetaOverlayHandlerAction(getResources().getDrawable(R.drawable.ic_launcher), new HandlerOnTapMap(this));
+
 		List<OverlayItem> overlayItems = OverlayItemsResto.getOverlayItems(entities);
-	  
-
-		Log.d("ActivityMap", "banyak overlay"+overlayItems.size());
-		
+	  	
 		if(overlayItems!=null){
 			for(OverlayItem overlay:overlayItems){
 				petaOverlay.addOverLay(overlay);
@@ -111,12 +131,12 @@ public class ActivityMap extends MapActivity {
 	
 	private Handler handler;
 	private RestoService restoService;
-	private List<Resto> restos;
+	private Map<String,Resto> mapResto;
 	private MapView mapView;
 	
 	private final static class HandlerMapDaftarResto extends HandlerEntities<Resto>{
 
-		public HandlerMapDaftarResto(ActivityMap activityMap){
+		public HandlerMapDaftarResto(ActivityDaftarRestoMap activityMap){
 			this.activityMap = activityMap;
 		}
 		@Override
@@ -131,7 +151,22 @@ public class ActivityMap extends MapActivity {
 			});
 		}
 		
-		private final ActivityMap activityMap;
+		private final ActivityDaftarRestoMap activityMap;
+		
+	}
+	
+	private final static class HandlerOnTapMap extends Handler{
+
+		public HandlerOnTapMap(ActivityDaftarRestoMap activityMap){
+			this.activityMap = activityMap;
+		}
+		@Override
+		public void handleMessage(Message msg) {
+			String id = msg.getData().getString("id");
+			activityMap.openResto(id);
+		}
+		
+		private ActivityDaftarRestoMap activityMap;
 		
 	}
 }

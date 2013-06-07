@@ -1,5 +1,7 @@
 package com.makanyuk.resto;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.util.List;
 
 import android.util.Log;
@@ -24,7 +26,16 @@ public class RestoService {
 	}
 	
 	public void getRestosFromAlamat(HandlerEntities<Resto> handler, String alamat){
-		String url = VariableGeneral.URL_GET_RESTOS+"?group=alamat&id='"+alamat+"'";
+		String query = "";
+		try {
+			query = URLEncoder.encode(alamat, "utf-8");
+		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
+		}
+		
+		Log.d("query alamat", query);
+		
+		String url = VariableGeneral.URL_GET_RESTOS+"?group=alamat&id="+query;
 		getRestos(handler,url);
 	}
 	
