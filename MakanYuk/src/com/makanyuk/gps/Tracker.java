@@ -38,7 +38,7 @@ public class Tracker implements LocationListener{
 		LocationProvider high =
 			    mlocManager.getProvider(mlocManager.getBestProvider(createFineCriteria(), true));
 		
-		mlocManager.requestSingleUpdate(high.getName(), this, mHandler.getLooper());
+	//	mlocManager.requestSingleUpdate(high.getName(), this, mHandler.getLooper());
 		
 	}
 	

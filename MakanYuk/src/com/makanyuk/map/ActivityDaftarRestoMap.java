@@ -4,6 +4,14 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.GoogleMap.OnMapClickListener;
+import com.google.android.gms.maps.GoogleMap.OnMarkerClickListener;
+import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
+import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.maps.GeoPoint;
 import com.google.android.maps.MapActivity;
 import com.google.android.maps.MapController;
@@ -24,13 +32,36 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.support.v4.app.FragmentActivity;
 
-public class ActivityDaftarRestoMap extends MapActivity {
+public class ActivityDaftarRestoMap extends FragmentActivity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.layout_map);
+		 
+		googleMap =  ((SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.mapView)).getMap();
+		
+	  if (googleMap!=null){
+      Marker hamburg = googleMap.addMarker(new MarkerOptions().position(HAMBURG)
+          .title("Hamburg"));
+      MarkerOptions markerOption = new MarkerOptions()
+	      .position(KIEL)
+	      .title("Kiel")
+	      .snippet("Kiel is cool")
+	      .icon(BitmapDescriptorFactory
+	          .fromResource(R.drawable.ic_launcher));
+      Marker kiel = googleMap.addMarker(markerOption);
+      googleMap.setOnMarkerClickListener(new OnMarkerClickListener() {
+				
+				@Override
+				public boolean onMarkerClick(Marker marker) {
+					return false;
+				}
+			});
+      
+    }
 		
 		mapView = (MapView) findViewById(R.id.mapview);
 		mapView.setBuiltInZoomControls(true);
@@ -99,12 +130,8 @@ public class ActivityDaftarRestoMap extends MapActivity {
 			
 		}
   		private ActivityDaftarRestoMap mPeta;
-  	}
+  }
 
-	@Override
-	protected boolean isRouteDisplayed() {
-		return false;
-	}
 		
 	public void refreshOverlay(List<Resto> entities){
 		
@@ -133,6 +160,10 @@ public class ActivityDaftarRestoMap extends MapActivity {
 	private RestoService restoService;
 	private Map<String,Resto> mapResto;
 	private MapView mapView;
+	private GoogleMap googleMap;
+
+  static final LatLng HAMBURG = new LatLng(53.558, 9.927);
+  static final LatLng KIEL = new LatLng(53.551, 9.993);
 	
 	private final static class HandlerMapDaftarResto extends HandlerEntities<Resto>{
 
